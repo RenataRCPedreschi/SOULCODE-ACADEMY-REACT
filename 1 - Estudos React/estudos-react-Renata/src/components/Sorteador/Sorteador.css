@@ -1,0 +1,28 @@
+.sorteador{
+
+    padding: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+button{
+margin-top: 10px;
+    width: 100px;
+}
+
+.par{
+    background-color: green;
+}
+
+.impar{
+background-color: yellow;
+}
+
+p{
+    font-size: 20px;
+}

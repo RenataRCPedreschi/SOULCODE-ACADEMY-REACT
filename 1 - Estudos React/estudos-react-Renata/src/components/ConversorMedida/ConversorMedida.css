@@ -1,0 +1,15 @@
+*{
+    background-color: rgb(180, 165, 194);
+}
+
+
+.conversor{
+   
+   text-align: center;
+   position: relative;
+   margin: 220px 0;
+}
+
+input{
+    background-color: white;
+}

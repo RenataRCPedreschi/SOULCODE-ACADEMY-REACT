@@ -1,0 +1,20 @@
+.produto{
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+    background-color: #421969;
+    display: inline-block; /* mesma linha */
+
+}
+
+.produto img{
+    width: 100%;
+}
+
+.produto h3,
+.produto span,
+.produto strong{
+    display: block;
+    text-align: center;
+    color: white;
+}

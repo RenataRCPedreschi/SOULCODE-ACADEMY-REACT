@@ -1,0 +1,17 @@
+.cardAlunos{
+border: 5px solid;
+width: 250px;
+margin: 10px;
+padding: 5px;
+/* border-color: green; */
+background-color: beige;
+
+}
+
+.aprovado{
+    border:5px solid green;
+}
+
+.reprovado{
+    border: 5px solid red;
+}

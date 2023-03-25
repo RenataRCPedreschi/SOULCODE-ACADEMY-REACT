@@ -1,0 +1,11 @@
+.devs{
+    width: 100%;
+    margin: 15px;
+}
+
+.title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+}
