@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logoIcon from "../../assets/icons/livros.png";
 import googleIcon from "../../assets/icons/google-white.svg";
 import { useForm } from "react-hook-form";
-import {cadastrarEmailSenha, loginGoogle} from "../../firebase/auth"
+import { cadastrarEmailSenha, loginGoogle } from "../../firebase/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -17,30 +17,40 @@ export function Cadastro() {
   const navigate = useNavigate();
 
   function onSubmit(data) {
-    const {email, senha} = data;
-    cadastrarEmailSenha(email, senha).then((user) => {
-      toast.success(`Bem vindo(a) ${user.email}`,{
-        position: "bottom-right",
-        duration: 2500,
+    const { email, senha } = data;
+    cadastrarEmailSenha(email, senha)
+      .then((user) => {
+        toast.success(`Bem-vindo(a) ${user.email}`, {
+          position: "bottom-right",
+          duration: 2500,
+        });
+        navigate("/");
+      })
+      .catch((erro) => {
+        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+          position: "bottom-right",
+          duration: 2500,
+        });
       });
-      navigate("/")
-    }).catch((erro) => {
-      toast.error(`Um erro aconteceu. Código: ${erro.code}`)
-          });
-    
   }
 
   function onLoginGoogle() {
-    //then = quando der certo o processo
-    loginGoogle().then((user) => {
-      toast.success(`Bem vindo(a) ${user.email}`,{
-        position: "bottom-right",
-        duration: 2500,
+    // then = quando der certo o processo
+    loginGoogle()
+      .then((user) => {
+        toast.success(`Bem-vindo(a) ${user.email}`, {
+          position: "bottom-right",
+          duration: 2500,
+        });
+        navigate("/");
+      })
+      .catch((erro) => {
+        // tratamento de erro
+        toast.error(`Um erro aconteceu. Código: ${erro.code}`, {
+          position: "bottom-right",
+          duration: 2500,
+        });
       });
-      navigate("/");
-    }).catch((erro) => {
-toast.error(`Um erro aconteceu. Código: ${erro.code}`)
-    });
   }
 
   return (
