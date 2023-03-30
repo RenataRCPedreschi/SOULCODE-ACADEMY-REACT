@@ -1,40 +1,44 @@
-import { addDoc, 
-    deleteDoc, 
-    doc, 
-    getDoc, 
-    getDocs, 
-    updateDoc  
-}
-from "firebase/firestore";
+import {
+    addDoc,
+    deleteDoc,
+    doc,
+    getDoc,
+    getDocs,
+    updateDoc
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { livrosCollection } from "./collections";
+import { storage } from "./config"
 
-export async function addLivro(data){
-    //addDoc pede dois parâmetros para esse caso a coleção e o valor a ser salvo
+export async function addLivro(data) {
     await addDoc(livrosCollection, data);
 }
 
-export async function getLivros(){
+export async function getLivros() {
     const snapshot = await getDocs(livrosCollection);
     let livros = [];
-    snapshot.forEach(doc =>{
+    snapshot.forEach(doc => {
         livros.push({...doc.data(), id: doc.id});
-        
-    });
-   return livros;
+    })
+    return livros;
 }
 
-export async function getLivro(id){
+export async function getLivro(id) {
     const document = await getDoc(doc(livrosCollection, id));
-    return{...document.data(), id: document.id};
+    return {...document.data(), id: document.id};
 }
 
-export async function updateLivro(id, data){
-    //pega como parâmentro o id do livro e os dados novos do forms
-    
-    //aqui atualiza na coleção com base no id inserindo as informações novas
+export async function updateLivro(id, data) {
     await updateDoc(doc(livrosCollection, id), data);
 }
 
-export async function deleteLivro(id){
-await deleteDoc(doc(livrosCollection, id));
+export async function deleteLivro(id) {
+    await deleteDoc(doc(livrosCollection, id));
+}
+
+export async function uploadCapaLivro(imagem) {
+    const filename = imagem.name;
+    const imageRef = ref(storage, `livros/${filename}`);
+    const result = await uploadBytes(imageRef, imagem);
+    return await getDownloadURL(result.ref);
 }

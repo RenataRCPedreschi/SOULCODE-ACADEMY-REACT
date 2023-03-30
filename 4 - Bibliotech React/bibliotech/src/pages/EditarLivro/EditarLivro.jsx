@@ -95,19 +95,14 @@ export function EditarLivro() {
               {errors.isbn?.message}
             </Form.Text>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Imagem da capa</Form.Label>
-            <Form.Control
-              type="url"
-              className={errors.urlCapa && "is-invalid"}
-              {...register("urlCapa", {
-                required: "O endereço da capa é obrigatório!",
-              })}
-            />
-            <Form.Text className="text-danger">
-              {errors.urlCapa?.message}
-            </Form.Text>
-          </Form.Group>
+
+
+          <Form.Group className="mb-3">
+                        <Form.Label>Imagem da capa</Form.Label>
+                        <Form.Control type="file" accept=".png,.jpg,.jpeg,.gif" {...register("imagem")} />
+                    </Form.Group>
+
+
           <Button type="submit" variant="success">
             Editar
           </Button>
